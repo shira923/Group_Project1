@@ -1,10 +1,21 @@
 import pygame
-ROWS_PIXELS = 25
-COLUMNS_PIXELS = 50
-WINDOW_HEIGHT = 750
-WINDOW_WIDTH = FILD_COLS * (
-        BUBBLE_RADIUS * 2 + SPACE_BETWEEN_COLS) + BUBBLE_RADIUS
-screen = pygame.display.set_mode(
-        (consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
-pygame.display.set_caption('game')
+
+FIELD_ROWS = 25
+FIELD_COLS = 50
+
+pygame.init()
+size = (FIELD_COLS, FIELD_ROWS)
+screen = pygame.display.set_mode(size)
+green_color = (124, 252, 0)
+screen.fill(green_color)
+
+GRASS_IMG = "grass.png"
+GRASS_WIDTH = 4
+GRASS_HEIGHT = 3
+
+
+def random_grass():
+    grass = pygame.image.load(GRASS_IMG)
+    sized_grass = pygame.transform.scale(grass, (GRASS_WIDTH, GRASS_HEIGHT))
+    for i in range(20):
 
