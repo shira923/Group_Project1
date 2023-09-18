@@ -7,8 +7,8 @@ game_field = []
 mines_list = []
 
 def create(line, column):
-    return { "number" : None,
-             "mine" : None}
+    return {"number": None,
+             "mine": None}
 
 def create_game_field():
     global game_field
@@ -23,26 +23,38 @@ def put_grass_in_grid():
     grass_list = []
     check = (0, 0)
     for num in range(20):
-        line = random.randint(0, 25)
+        line = random.randint(0, 21)
         column = random.randint(0, 50)
-        while line == 0 and column == 0 or line == 25 and column == 50 or check in grass_list:
-            line = random.randint(0, 25)
+        while line == 0 and column == 0 or line == 25 and column == 50:
+            line = random.randint(0, 21)
             column = random.randint(0, 50)
-            check = (line, column)
-        game_field[line][column]["number"] = Consts.FLAG_NUM
+            # check = (line, column)
+        for l in range(column, column + 3):
+            game_field[line][column]["number"] = Consts.GRASS_NUM
         Screen.pygame.transform(Consts.GRASS_IMG, (line, column))
         grass_list.append((line, column))
     return grass_list
 
 
 def put_mines_in_grid():
-    mines_num = random.randint(1, len(put_grass_in_grid()))
-    for place in range(len(put_grass_in_grid())):
-        for num in range(mines_num):
-            mines_place = random.randint(1, len(put_grass_in_grid()))
-            mines_list.append(put_grass_in_grid()[mines_place])
-            game_field[place][num]["number"] = Consts.MINE_NUM
-            pygame.surface.blit(Consts.MINE_IMG, Consts.GRASS_IMG, put_grass_in_grid()[mines_place])
+    for num in range(20):
+        line = random.randint(0, 21)
+        column = random.randint(0, 50)
+        while line == 0 and column == 0 or line == 25 and column == 50:
+            line = random.randint(0, 25)
+            column = random.randint(0, 50)
+        if game_field[line][column]["number"] == Consts.GRASS_NUM:
+            game_field[line][num]["number"] = Consts.MINE_NUM
+            pygame.surface.blit(Consts.MINE_IMG, Consts.GRASS_IMG, [line, column])
+        mines_list.append([line, column])
+        for l in range(column, column + 3):
+            game_field[line][column]["number"] = Consts.MINE_NUM
+    # mines_num = random.randint(1, len(put_grass_in_grid()))
+    # for place in range(20):
+    #     for num in range(mines_num):
+    #         mines_place = random.randint(1, len(put_grass_in_grid()))
+    #         mines_list.append(put_grass_in_grid()[mines_place])
+
 
         #
         #
