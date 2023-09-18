@@ -79,7 +79,11 @@ def should_soldier_pop():
 
 
 def flag_location():
-    screen.pygame.transform(flag_image, (21, 46))
+    # screen.pygame.transform(flag_image, (21, 46))
+    # for row in range(21, 21 + 3):
+    #     for column in range(46, 46 + 4):
+
+
 
 
 def touching_flag():
