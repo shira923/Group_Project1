@@ -1,5 +1,11 @@
 import pygame
 
+FLAG_NUM = 3
+MINE_NUM = 2
+GRASS_NUM = 1
+EMPTY_SQUARE_NUM = 0
+CONSTS_NUM = -1
+
 FIELD_ROWS = 25  # height
 FIELD_COLS = 50  # width
 EMPTY_SQUARE = "EMPTY"
