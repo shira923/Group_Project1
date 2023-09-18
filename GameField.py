@@ -6,10 +6,19 @@ import Consts
 game_field = []
 mines_list = []
 
-def create(line, column):
+def create(line, column, center_x, center_y):
     return {"number": None,
-             "mine": None}
+             "mine": None,
+            "center_x" : center_x,
+            "center_y" : center_y}
 
+def recalc_bubbles_locations():
+    # There is no need to do so for the first line, since it was just added
+    for row in range(1, len(game_field)):
+        for col in range(50):
+            game_field[row][col]["center_x"] = Bubble.calc_center_x(col, row,
+                                                                      row_start=0)
+            game_field[row][col]["center_y"] = Bubble.calc_center_y(row)
 def create_game_field():
     global game_field
     for row in range(Consts.FIELD_ROWS):
@@ -18,6 +27,29 @@ def create_game_field():
             row.append(Consts.EMPTY_SQUARE)
         game_field.append(row)
 
+
+def calc_center(col, row):
+    x = row * 10
+    y = col * 10
+    return (x , y)
+
+
+# def calc_center_x(col, row,):
+#     x = row * 10
+#     y = col * 10
+#          col * (
+#             Consts.BUBBLE_RADIUS * 2 + consts.SPACE_BETWEEN_COLS) + consts.BUBBLE_RADIUS
+#
+#     # Uneven rows has an offset
+#     if row % 2 != 0:
+#         bubble_x += consts.BUBBLE_RADIUS
+#
+#     return x
+#
+#
+# def calc_center_y(row):
+#     return row * (10 - consts.ROWS_OVERLAP) + \
+#            consts.BUBBLE_RADIUS
 
 def put_grass_in_grid():
     grass_list = []
@@ -31,7 +63,7 @@ def put_grass_in_grid():
             # check = (line, column)
         for l in range(column, column + 3):
             game_field[line][column]["number"] = Consts.GRASS_NUM
-        Screen.pygame.transform(Consts.GRASS_IMG, (line, column))
+        Screen.pygame.transform(Consts.GRASS_IMG, (line * 10, column * 10))
         grass_list.append((line, column))
     return grass_list
 
@@ -45,8 +77,8 @@ def put_mines_in_grid():
             column = random.randint(0, 50)
         if game_field[line][column]["number"] == Consts.GRASS_NUM:
             game_field[line][num]["number"] = Consts.MINE_NUM
-            pygame.surface.blit(Consts.MINE_IMG, Consts.GRASS_IMG, [line, column])
-        mines_list.append([line, column])
+            pygame.surface.blit(Consts.MINE_IMG, Consts.GRASS_IMG, [line * 10, column * 10])
+        mines_list.append([line * 10, column * 10])
         for l in range(column, column + 3):
             game_field[line][column]["number"] = Consts.MINE_NUM
     # mines_num = random.randint(1, len(put_grass_in_grid()))

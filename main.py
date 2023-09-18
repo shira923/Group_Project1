@@ -1,7 +1,62 @@
 import pygame
 import os
+import GameField
 import Soldier
 import Consts
+
+state = {
+    "original_arrow": Screen.create_arrow(consts.ARROW_IMG),
+    "rotated_arrow": None,
+    "is_bubble_fired": False,
+    "bubbles_popping": [],
+    "turns_left_to_add_row": Consts.NUM_OF_TURNS_TO_ADD_ROW,
+    "is_window_open": True,
+    "state": Consts.RUNNING_STATE,
+    "bullet_bubble": None,
+    "bubble_direction": None,
+    "mouse_angle": None
+}
+
+
+
+def main():
+    pygame.init()
+    GameField.create()
+
+    while state["is_window_open"] and not GameField.should_soldier_pop():
+        handle_user_events()
+
+        if state["is_bubble_fired"]:
+
+            move_soldier()
+
+
+
+
+
+
+
+
+
+
+
+
+def handle_user_events():
+    for event in pygame.event.get():
+
+        if event.type == pygame.QUIT:
+            state["is_window_open"] = False
+
+        elif state["state"] != Consts.RUNNING_STATE:
+            continue
+
+        if event.type == pygame.MOUSEMOTION:
+            rotate_arrow()
+
+        elif event.type == pygame.MOUSEBUTTONDOWN and \
+                not state["is_bubble_fired"] and \
+                not state["bubbles_popping"]:
+            fire_bubble()
 
 
 def soldier_movement(pygame):
