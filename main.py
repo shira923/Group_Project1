@@ -1,4 +1,5 @@
 import pygame
+
 def soldier_movement(pygame):
     user_input = pygame.key.get_pressed()
     vel = 1

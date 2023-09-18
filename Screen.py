@@ -1,21 +1,24 @@
 import pygame
-
-FIELD_ROWS = 25
-FIELD_COLS = 50
+import random
+import Consts
 
 pygame.init()
-size = (FIELD_COLS, FIELD_ROWS)
+size = (Consts.FIELD_COLS, Consts.FIELD_ROWS)
 screen = pygame.display.set_mode(size)
 green_color = (124, 252, 0)
 screen.fill(green_color)
 
-GRASS_IMG = "grass.png"
-GRASS_WIDTH = 4
-GRASS_HEIGHT = 3
 
-
-def random_grass():
-    grass = pygame.image.load(GRASS_IMG)
-    sized_grass = pygame.transform.scale(grass, (GRASS_WIDTH, GRASS_HEIGHT))
-    for i in range(20):
-
+def put_grass_in_grid():
+    grass_list = []
+    check = (0, 0)
+    for num in range(20):
+        line = random.randint(0, 25)
+        column = random.randint(0, 50)
+        while line == 0 and column == 0 or line == 25 and column == 50 or check in grass_list:
+            line = random.randint(0, 25)
+            column = random.randint(0, 50)
+            check = (line, column)
+        pygame.transform(Consts.GRASS_IMG, (line, column))
+        grass_list.append((line, column))
+    return grass_list
