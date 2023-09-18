@@ -22,6 +22,9 @@ GRASS_IMG = pygame.image.load('grass.png')
 GRASS_WIDTH = 4
 GRASS_HEIGHT = 3
 
+
 SOLDIER_REG_IMG = "solider.png"
 SOLDIER_NIGHT_IMG = "solider_nigth.png"
+SOLDIER = pygame.image.load(SOLDIER_REG_IMG)
+
 STARTING_POSITION = (0, 0)
