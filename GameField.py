@@ -1,5 +1,6 @@
 import random
 import pygame
+
 game_field = []
 FIELD_ROWS = 25
 FIELD_COLS = 50
