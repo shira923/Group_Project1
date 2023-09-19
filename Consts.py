@@ -14,6 +14,7 @@ MARGIN = 1
 EMPTY_SQUARE = "EMPTY"
 green_color = (124, 252, 0)
 
+SOLDIER_MOVEMENT_AMOUNT = 10
 
 MINE_IMG = pygame.image.load('mine.png')
 
@@ -28,4 +29,5 @@ SOLDIER_REG_IMG = "soldier.png"
 SOLDIER_NIGHT_IMG = "soldier_nigth.png"
 SOLDIER = pygame.image.load(SOLDIER_REG_IMG)
 
-STARTING_POSITION = (0, 0)
+X_SOLDIER = 0
+Y_SOLDIER = 0

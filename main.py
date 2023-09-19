@@ -136,5 +136,35 @@ def handle_player_events():
                 print("Player moved right!")
 
 
-Soldier.soldier_movement(pygame)
+# Soldier.soldier_movement(pygame)
+
+def soldier_movement():
+    y_change = 0
+    x_change = 0
+    while not GameField.should_soldier_pop() == True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                break
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    y_change -= Consts.SOLDIER_MOVEMENT_AMOUNT
+                elif event.key == pygame.K_DOWN:
+                    y_change += Consts.SOLDIER_MOVEMENT_AMOUNT
+                if event.key == pygame.K_LEFT:
+                    x_change -= Consts.SOLDIER_MOVEMENT_AMOUNT
+                    if event.key == pygame.K_RIGHT:
+                        x_change += Consts.SOLDIER_MOVEMENT_AMOUNT
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+                    y_change = 0
+                elif event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                    x_change = 0
+        Consts.X_SOLDIER = x_change
+        Consts.Y_SOLDIER = y_change
+        return Consts.X_SOLDIER, Consts.Y_SOLDIER
+
+
+
+
+
 handle_player_events()
