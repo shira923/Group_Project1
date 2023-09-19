@@ -18,13 +18,13 @@ def create(line, column):
 #             game_field[row][col]["center_x"] = Bubble.calc_center_x(col, row,
 #                                                                       row_start=0)
 #             game_field[row][col]["center_y"] = Bubble.calc_center_y(row)
-def create_game_field():
-    global game_field
-    for row in range(Consts.FIELD_ROWS):
-        row = []
-        for col in range(Consts.FIELD_COLS):
-            row.append(Consts.EMPTY_SQUARE)
-        game_field.append(row)
+# def create_game_field():
+#     global game_field
+#     for row in range(Consts.FIELD_ROWS):
+#         row = []
+#         for col in range(Consts.FIELD_COLS):
+#             row.append(Consts.EMPTY_SQUARE)
+#         game_field.append(row)
 
 
 # def calc_center(col, row):
