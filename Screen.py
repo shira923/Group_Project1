@@ -4,10 +4,20 @@ import Consts
 import GameField
 
 
-size = (Consts.WINDOW_WIDTH, Consts.WINDOW_HEIGHT)
-screen = pygame.display.set_mode(size)
 
+# img = pygame.transform.scale(Consts.SOLDIER_REG_IMG, (2 , 4 ))
+# screen.blit(img,[0,0])
 
+# screen.blit(Consts.green_color, (0,0))
+# pygame.display.flip()
+def make_screen():
+    pygame.init()
+    size = (Consts.WINDOW_WIDTH, Consts.WINDOW_HEIGHT)
+    screen = pygame.display.set_mode(size)
+    screen.fill(Consts.green_color)
+    return screen
+screen = make_screen()
+pygame.display.flip()
 
 
 font = pygame.font.SysFont('timesnewroman', 60)

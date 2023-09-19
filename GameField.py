@@ -5,6 +5,7 @@ import Screen
 import Consts
 game_field = []
 mines_list = []
+grass_list = []
 
 
 def create(line, column):
@@ -54,7 +55,6 @@ def create_game_field():
 #            consts.BUBBLE_RADIUS
 
 def put_grass_in_grid():
-    grass_list = []
     for num in range(20):
         line = random.randint(0, 21)
         column = random.randint(0, 49)
@@ -64,9 +64,11 @@ def put_grass_in_grid():
             # check = (line, column)
         for l in range(column, column + 3):
             game_field[line][column]["number"] = Consts.GRASS_NUM
-        Screen.screen.pygame.transform(Consts.GRASS_IMG, (game_field[line][column]["center_x"], game_field[line][column]["center_y"]))
+        Screen.screen.blit(Consts.GRASS_IMG2 ,(game_field[line][column]["center_x"], game_field[line][column]["center_y"]))
+        # Screen.screen.pygame.transform(Consts.GRASS_IMG2, (game_field[line][column]["center_x"], game_field[line][column]["center_y"]))
         grass_list.append((line, column))
-    return grass_list
+        pygame.display.update()
+
 
 
 def put_mines_in_grid():
