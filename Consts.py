@@ -5,9 +5,14 @@ MINE_NUM = 2
 GRASS_NUM = 1
 EMPTY_SQUARE_NUM = 0
 CONSTS_NUM = -1
-
+RUNNING_STATE = 30
+# size = (Consts.WINDOW_HEIGHT, Consts.WINDOW_WIDTH)
+screen = pygame.display.set_mode(size)
 FIELD_ROWS = 25  # height
 FIELD_COLS = 50  # width
+WINDOW_HEIGHT = 10 * FIELD_ROWS
+WINDOW_WIDTH = 10 * FIELD_COLS
+MARGIN = 1
 EMPTY_SQUARE = "EMPTY"
 
 MINE_IMG = pygame.image.load('mine.png')

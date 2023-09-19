@@ -8,30 +8,62 @@ mines_list = []
 
 def create(line, column):
     return {"number": None,
-             "mine": None}
+            "center_x" : column * 10,
+            "center_y" : line * 10}
 
-def create_game_field():
-    global game_field
-    for row in range(Consts.FIELD_ROWS):
-        row = []
-        for col in range(Consts.FIELD_COLS):
-            row.append(Consts.EMPTY_SQUARE)
-        game_field.append(row)
+# def recalc_bubbles_locations():
+#     # There is no need to do so for the first line, since it was just added
+#     for row in range(1, len(game_field)):
+#         for col in range(50):
+#             game_field[row][col]["center_x"] = Bubble.calc_center_x(col, row,
+#                                                                       row_start=0)
+#             game_field[row][col]["center_y"] = Bubble.calc_center_y(row)
+# def create_game_field():
+#     global game_field
+#     for row in range(Consts.FIELD_ROWS):
+#         row = []
+#         for col in range(Consts.FIELD_COLS):
+#             row.append(Consts.EMPTY_SQUARE)
+#         game_field.append(row)
 
+
+# def calc_center(col, row):
+#     x = row * 10
+#     y = col * 10
+#     return (x , y)
+
+# def calc_x():
+#     x = col * 10
+
+# def calc_center_x(col, row,):
+#     x = row * 10
+#     y = col * 10
+#          col * (
+#             Consts.BUBBLE_RADIUS * 2 + consts.SPACE_BETWEEN_COLS) + consts.BUBBLE_RADIUS
+#
+#     # Uneven rows has an offset
+#     if row % 2 != 0:
+#         bubble_x += consts.BUBBLE_RADIUS
+#
+#     return x
+#
+#
+# def calc_center_y(row):
+#     return row * (10 - consts.ROWS_OVERLAP) + \
+#            consts.BUBBLE_RADIUS
 
 def put_grass_in_grid():
     grass_list = []
-    check = (0, 0)
     for num in range(20):
         line = random.randint(0, 21)
-        column = random.randint(0, 50)
-        while line == 0 and column == 0 or line == 25 and column == 50:
+        column = random.randint(0, 49)
+        while line == 0 and column == 0 or game_field[line][column]["number"] != Consts.FLAG_NUM:
             line = random.randint(0, 21)
             column = random.randint(0, 50)
             # check = (line, column)
         for l in range(column, column + 3):
             game_field[line][column]["number"] = Consts.GRASS_NUM
-        Screen.pygame.transform(Consts.GRASS_IMG, (line, column))
+        Screen.pygame.transform(Consts.GRASS_IMG, (game_field[line][column]["center_x"], game_field[line][column]["center_y"]))
         grass_list.append((line, column))
     return grass_list
 
@@ -39,13 +71,13 @@ def put_grass_in_grid():
 def put_mines_in_grid():
     for num in range(20):
         line = random.randint(0, 21)
-        column = random.randint(0, 50)
-        while line == 0 and column == 0 or line == 25 and column == 50:
-            line = random.randint(0, 25)
-            column = random.randint(0, 50)
+        column = random.randint(0, 49)
+        while line == 0 and column == 0 or game_field[line][column]["number"] != Consts.FLAG_NUM:
+            line = random.randint(0, 21)
+            column = random.randint(0, 49)
         if game_field[line][column]["number"] == Consts.GRASS_NUM:
             game_field[line][num]["number"] = Consts.MINE_NUM
-            pygame.surface.blit(Consts.MINE_IMG, Consts.GRASS_IMG, [line, column])
+            pygame.surface.blit(Consts.MINE_IMG, Consts.GRASS_IMG, (game_field[line][column]["center_x"], game_field[line][column]["center_y"]) )
         mines_list.append([line, column])
         for l in range(column, column + 3):
             game_field[line][column]["number"] = Consts.MINE_NUM
