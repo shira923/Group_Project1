@@ -9,8 +9,8 @@ mines_list = []
 
 def create(line, column):
     return {"number": None,
-            "center_x" : column * 50,
-            "center_y" : line * 50}
+            "center_x" : column * 20,
+            "center_y" : line * 20}
 
 # def recalc_bubbles_locations():
 #     # There is no need to do so for the first line, since it was just added

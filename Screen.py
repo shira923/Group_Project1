@@ -4,8 +4,7 @@ import Consts
 import GameField
 
 
-pygame.init()
-size = (Consts.FIELD_COLS, Consts.FIELD_ROWS)
+size = (Consts.WINDOW_WIDTH, Consts.WINDOW_HEIGHT)
 screen = pygame.display.set_mode(size)
 
 
@@ -35,3 +34,4 @@ def draw_game():
         win_msg()
 
     pygame.display.flip()
+# screen.blit(text_img, location)

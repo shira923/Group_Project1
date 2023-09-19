@@ -12,7 +12,7 @@ def create_soldier():
     # pygame.image.frombuffer(Consts.SOLDIER_REG_IMG, (2 * 50, 4 * 50), format(Consts.SOLDIER_REG_IMG))
     # pygame.image.frombuffer(Consts.SOLDIER_REG_IMG, )
 
-    screen.blit(player_img,[0,0])
+    screen.blit(Consts.SOLDIER,[0,0])
     pygame.display.flip()
     # player_height = 50
     # player_width = 50
