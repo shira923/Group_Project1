@@ -27,6 +27,7 @@ GRASS_HEIGHT = 3
 
 SOLDIER_REG_IMG = "soldier.png"
 SOLDIER_NIGHT_IMG = "soldier_nigth.png"
+SOLDIER_INJURED_IMG = 'injury.png'
 SOLDIER = pygame.image.load(SOLDIER_REG_IMG)
 
 X_SOLDIER = 0

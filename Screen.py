@@ -4,7 +4,8 @@ import Consts
 import GameField
 
 
-size = (Consts.WINDOW_WIDTH, Consts.WINDOW_HEIGHT)
+pygame.init()
+size = (Consts.FIELD_COLS, Consts.FIELD_ROWS)
 screen = pygame.display.set_mode(size)
 
 
@@ -22,6 +23,7 @@ def win_msg():
 def lose_msg():
     win_txt = font.render("YOU LOST!", False, (255, 255, 255))
     screen.blit(win_txt, (12.5, 225))
+    screen.blit(Consts.SOLDIER_INJURED_IMG, (10, 10))
     pygame.display.update()
 
 
@@ -34,4 +36,3 @@ def draw_game():
         win_msg()
 
     pygame.display.flip()
-# screen.blit(text_img, location)
