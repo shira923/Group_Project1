@@ -34,3 +34,4 @@ def soldier_movement(pygame):
         y -= vel
     if user_input == [pygame.K_DOWN]:
         y += vel
+    return x, y

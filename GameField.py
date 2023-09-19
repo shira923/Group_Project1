@@ -1,15 +1,15 @@
 import random
 import pygame
 import Screen
+from Screen import screen
 import Consts
-
 game_field = []
 mines_list = []
 
 def create(line, column):
     return {"number": None,
-            "center_x" : column * 10,
-            "center_y" : line * 10}
+            "center_x" : column * 50,
+            "center_y" : line * 50}
 
 # def recalc_bubbles_locations():
 #     # There is no need to do so for the first line, since it was just added
@@ -63,7 +63,7 @@ def put_grass_in_grid():
             # check = (line, column)
         for l in range(column, column + 3):
             game_field[line][column]["number"] = Consts.GRASS_NUM
-        Screen.pygame.transform(Consts.GRASS_IMG, (game_field[line][column]["center_x"], game_field[line][column]["center_y"]))
+        screen.pygame.transform(Consts.GRASS_IMG, (game_field[line][column]["center_x"], game_field[line][column]["center_y"]))
         grass_list.append((line, column))
     return grass_list
 
@@ -81,6 +81,9 @@ def put_mines_in_grid():
         mines_list.append([line, column])
         for l in range(column, column + 3):
             game_field[line][column]["number"] = Consts.MINE_NUM
+
+
+
     # mines_num = random.randint(1, len(put_grass_in_grid()))
     # for place in range(20):
     #     for num in range(mines_num):
@@ -126,7 +129,7 @@ def should_soldier_pop():
 
 
 def flag_location():
-    Screen.pygame.transform(Consts.FLAG_IMG, (21, 46))
+    screen.pygame.transform(Consts.FLAG_IMG, (21, 46))
     for row in range(21, 21 + 3):
         for column in range(46, 46 + 4):
             game_field[row][column]["number"] = Consts.FLAG_NUM
