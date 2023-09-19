@@ -1,34 +1,24 @@
 import pygame
 import os
-import Soldier
 import Consts
+import Soldier
 
 
-def soldier_movement(pygame):
-    user_input = pygame.key.get_pressed()
-    vel = 1
-    x = 0
-    y = 0
-    if user_input == [pygame.K_LEFT]:
-        x -= vel
-    if user_input == [pygame.K_RIGHT]:
-            x += vel
-    if user_input == [pygame.K_UP]:
-            y -= vel
-    if user_input == [pygame.K_DOWN]:
-        y += vel
+Soldier.soldier_movement(pygame)
 
 
-class player(pygame.sprite):
-    def initiate_player(Soldier, Consts, self):
-       pygame.sprite.sprite.__inint__(self)
-       self_images = []
-       img = pygame.image.load(os.path.join('Group_Project1', Consts.SOLDIER_REG_IMAGE)).convert()
-       self.images.append(img)
-       self.image = self_images[Consts.STARTING_POSITION]
-       self.rect = self.image.get_rect()
+def handle_player_events():
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            state["is_window_open"] = False
+        elif state["state"] != Consts.RUNNING_STATE:
+            continue
 
+        if event.type == pygame.MOUSEMOTION:
+            rotate_arrow()
 
-
-
+        elif event.type == pygame.MOUSEBUTTONDOWN and \
+                not state["is_bubble_fired"] and \
+                not state["bubbles_popping"]:
+            fire_bubble()
 
