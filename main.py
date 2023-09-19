@@ -1,9 +1,8 @@
 import pygame
+import Screen
 import Consts
+import GameField
 import Soldier
-
-Soldier.soldier_movement(pygame)
-
 
 def handle_player_events():
     for event in pygame.event.get():
@@ -18,3 +17,7 @@ def handle_player_events():
                 print("Player moved left!")
             elif event.key == pygame.K_RIGHT:
                 print("Player moved right!")
+
+
+Soldier.soldier_movement(pygame)
+handle_player_events()
