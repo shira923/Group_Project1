@@ -54,17 +54,16 @@ def create(line, column):
 
 def put_grass_in_grid():
     grass_list = []
-    check = (0, 0)
     for num in range(20):
         line = random.randint(0, 21)
         column = random.randint(0, 49)
-        while line == 0 and column == 0 or line == 25 and column == 50:
+        while line == 0 and column == 0 or game_field[line][column]["number"] != Consts.FLAG_NUM:
             line = random.randint(0, 21)
             column = random.randint(0, 50)
             # check = (line, column)
         for l in range(column, column + 3):
             game_field[line][column]["number"] = Consts.GRASS_NUM
-        Screen.pygame.transform(Consts.GRASS_IMG, (line * 10, column * 10))
+        Screen.pygame.transform(Consts.GRASS_IMG, (game_field[line][column]["center_x"], game_field[line][column]["center_y"]))
         grass_list.append((line, column))
     return grass_list
 
@@ -78,7 +77,7 @@ def put_mines_in_grid():
             column = random.randint(0, 49)
         if game_field[line][column]["number"] == Consts.GRASS_NUM:
             game_field[line][num]["number"] = Consts.MINE_NUM
-            pygame.surface.blit(Consts.MINE_IMG, Consts.GRASS_IMG, create(line, column))
+            pygame.surface.blit(Consts.MINE_IMG, Consts.GRASS_IMG, (game_field[line][column]["center_x"], game_field[line][column]["center_y"]) )
         mines_list.append([line, column])
         for l in range(column, column + 3):
             game_field[line][column]["number"] = Consts.MINE_NUM
