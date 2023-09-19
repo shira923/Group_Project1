@@ -1,10 +1,11 @@
 import random
 import pygame
 import Screen
-from Screen import screen
+# from Screen import screen
 import Consts
 game_field = []
 mines_list = []
+
 
 def create(line, column):
     return {"number": None,
@@ -18,13 +19,13 @@ def create(line, column):
 #             game_field[row][col]["center_x"] = Bubble.calc_center_x(col, row,
 #                                                                       row_start=0)
 #             game_field[row][col]["center_y"] = Bubble.calc_center_y(row)
-# def create_game_field():
-#     global game_field
-#     for row in range(Consts.FIELD_ROWS):
-#         row = []
-#         for col in range(Consts.FIELD_COLS):
-#             row.append(Consts.EMPTY_SQUARE)
-#         game_field.append(row)
+def create_game_field():
+    global game_field
+    for row in range(Consts.FIELD_ROWS):
+        row = []
+        for col in range(Consts.FIELD_COLS):
+            row.append(Consts.EMPTY_SQUARE)
+        game_field.append(row)
 
 
 # def calc_center(col, row):
@@ -63,7 +64,7 @@ def put_grass_in_grid():
             # check = (line, column)
         for l in range(column, column + 3):
             game_field[line][column]["number"] = Consts.GRASS_NUM
-        screen.pygame.transform(Consts.GRASS_IMG, (game_field[line][column]["center_x"], game_field[line][column]["center_y"]))
+        Screen.screen.pygame.transform(Consts.GRASS_IMG, (game_field[line][column]["center_x"], game_field[line][column]["center_y"]))
         grass_list.append((line, column))
     return grass_list
 
@@ -129,7 +130,7 @@ def should_soldier_pop():
 
 
 def flag_location():
-    screen.pygame.transform(Consts.FLAG_IMG, (21, 46))
+    Screen.screen.pygame.transform(Consts.FLAG_IMG, (21, 46))
     for row in range(21, 21 + 3):
         for column in range(46, 46 + 4):
             game_field[row][column]["number"] = Consts.FLAG_NUM

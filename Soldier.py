@@ -1,13 +1,23 @@
 import pygame
 import Consts
+import Screen
+from Screen import screen
 
 
 def create_soldier():
-    player_img = pygame.image.load(Consts.SOLDIER)
-    player_height = 50
-    player_width = 50
-    player_img = pygame.transform.scale(player_img, (player_width, player_height))
-    player_x, player_y = Consts.STARTING_POSITION
+    # thumbnail
+
+    img = pygame.transform.scale(Consts.SOLDIER_REG_IMG, (2 * 50, 4 * 50))
+    player_img = img.convert()
+    # pygame.image.frombuffer(Consts.SOLDIER_REG_IMG, (2 * 50, 4 * 50), format(Consts.SOLDIER_REG_IMG))
+    # pygame.image.frombuffer(Consts.SOLDIER_REG_IMG, )
+
+    screen.blit(player_img,[0,0])
+    pygame.display.flip()
+    # player_height = 50
+    # player_width = 50
+
+    # player_x, player_y = Consts.STARTING_POSITION
 
 
 def soldier_out_of_borders(Main, Consts):
