@@ -1,12 +1,11 @@
 import pygame
 import random
 import Consts
+import GameField
 
 pygame.init()
 size = (Consts.FIELD_COLS, Consts.FIELD_ROWS)
 screen = pygame.display.set_mode(size)
-green_color = (124, 252, 0)
-screen.fill(green_color)
 
 
 def put_grass_in_grid():

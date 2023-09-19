@@ -12,6 +12,8 @@ WINDOW_HEIGHT = 10 * FIELD_ROWS
 WINDOW_WIDTH = 10 * FIELD_COLS
 MARGIN = 1
 EMPTY_SQUARE = "EMPTY"
+green_color = (124, 252, 0)
+
 
 MINE_IMG = pygame.image.load('mine.png')
 
