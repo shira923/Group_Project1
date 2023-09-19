@@ -83,11 +83,13 @@ def put_mines_in_grid():
             column = random.randint(0, 49)
         if game_field[line][column] == Consts.GRASS_NUM:
             game_field[line][num] = Consts.MINE_NUM
-            Screen.screen.blit(Consts.GRASS_IMG2,
+            Screen.screen.blit(Consts.MINE_IMG,
                                (create(line, column).get("center_x"), create(line, column).get("center_y")))
         mines_list.append([line, column])
         for l in range(column, column + 3):
             game_field[line][column] = Consts.MINE_NUM
+            Screen.screen.blit(Consts.MINE_IMG,
+                               (create(line, column).get("center_x"), create(line, column).get("center_y")))
 
     # mines_num = random.randint(1, len(put_grass_in_grid()))
     # for place in range(20):
