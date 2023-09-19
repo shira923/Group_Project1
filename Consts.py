@@ -10,8 +10,9 @@ size = (Consts.WINDOW_HEIGHT, Consts.WINDOW_WIDTH)
 screen = pygame.display.set_mode(size)
 FIELD_ROWS = 25  # height
 FIELD_COLS = 50  # width
-WINDOW_HEIGHT = 15 * FIELD_ROWS
-WINDOW_WIDTH = 15 * FIELD_COLS
+WINDOW_HEIGHT = 10 * FIELD_ROWS
+WINDOW_WIDTH = 10 * FIELD_COLS
+MARGIN = 1
 EMPTY_SQUARE = "EMPTY"
 
 MINE_IMG = pygame.image.load('mine.png')

@@ -33,6 +33,8 @@ def calc_center(col, row):
     y = col * 10
     return (x , y)
 
+def calc_x():
+    x = col * 10
 
 # def calc_center_x(col, row,):
 #     x = row * 10
@@ -78,7 +80,7 @@ def put_mines_in_grid():
         if game_field[line][column]["number"] == Consts.GRASS_NUM:
             game_field[line][num]["number"] = Consts.MINE_NUM
             pygame.surface.blit(Consts.MINE_IMG, Consts.GRASS_IMG, [line * 10, column * 10])
-        mines_list.append([line * 10, column * 10])
+        mines_list.append([line, column])
         for l in range(column, column + 3):
             game_field[line][column]["number"] = Consts.MINE_NUM
     # mines_num = random.randint(1, len(put_grass_in_grid()))
