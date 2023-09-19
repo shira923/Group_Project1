@@ -3,6 +3,7 @@ import pygame
 import Screen
 # from Screen import screen
 import Consts
+
 game_field = []
 mines_list = []
 grass_list = []
@@ -10,8 +11,9 @@ grass_list = []
 
 def create(line, column):
     return {"number": None,
-            "center_x" : column * 20,
-            "center_y" : line * 20}
+            "center_x": column * 20,
+            "center_y": line * 20}
+
 
 # def recalc_bubbles_locations():
 #     # There is no need to do so for the first line, since it was just added
@@ -56,36 +58,36 @@ def create_game_field():
 
 def put_grass_in_grid():
     for num in range(20):
-        line = random.randint(0, 21)
+        line = random.randint(0, 19)
         column = random.randint(0, 49)
-        while line == 0 and column == 0 or game_field[line][column]["number"] != Consts.FLAG_NUM:
-            line = random.randint(0, 21)
-            column = random.randint(0, 50)
+        if line == 0 and column == 0 or game_field[line][column] != Consts.FLAG_NUM:
+            Screen.screen.blit(Consts.GRASS_IMG2,
+                               (create(line, column).get("center_x"), create(line, column).get("center_y")))
+
             # check = (line, column)
         for l in range(column, column + 3):
-            game_field[line][column]["number"] = Consts.GRASS_NUM
-        Screen.screen.blit(Consts.GRASS_IMG2 ,(game_field[line][column]["center_x"], game_field[line][column]["center_y"]))
+            game_field[line][column] = Consts.GRASS_NUM
+        Screen.screen.blit(Consts.GRASS_IMG2,
+                           (create(line, column).get("center_x"), create(line, column).get("center_y")))
         # Screen.screen.pygame.transform(Consts.GRASS_IMG2, (game_field[line][column]["center_x"], game_field[line][column]["center_y"]))
         grass_list.append((line, column))
         pygame.display.update()
 
 
-
 def put_mines_in_grid():
     for num in range(20):
-        line = random.randint(0, 21)
+        line = random.randint(0, 19)
         column = random.randint(0, 49)
-        while line == 0 and column == 0 or game_field[line][column]["number"] != Consts.FLAG_NUM:
-            line = random.randint(0, 21)
+        while line == 0 and column == 0 or game_field[line][column] != Consts.FLAG_NUM:
+            line = random.randint(0, 19)
             column = random.randint(0, 49)
-        if game_field[line][column]["number"] == Consts.GRASS_NUM:
-            game_field[line][num]["number"] = Consts.MINE_NUM
-            pygame.surface.blit(Consts.MINE_IMG, Consts.GRASS_IMG, (game_field[line][column]["center_x"], game_field[line][column]["center_y"]) )
+        if game_field[line][column] == Consts.GRASS_NUM:
+            game_field[line][num] = Consts.MINE_NUM
+            Screen.screen.blit(Consts.GRASS_IMG2,
+                               (create(line, column).get("center_x"), create(line, column).get("center_y")))
         mines_list.append([line, column])
         for l in range(column, column + 3):
-            game_field[line][column]["number"] = Consts.MINE_NUM
-
-
+            game_field[line][column] = Consts.MINE_NUM
 
     # mines_num = random.randint(1, len(put_grass_in_grid()))
     # for place in range(20):
@@ -93,19 +95,18 @@ def put_mines_in_grid():
     #         mines_place = random.randint(1, len(put_grass_in_grid()))
     #         mines_list.append(put_grass_in_grid()[mines_place])
 
-
-        #
-        #
-        #
-        #
-        #
-        # line = random.randint(0, 25)
-        # column = random.randint(0, 50)
-        # while line == 0 and column == 0 or line == 25 and column == 50:
-        #     line = random.randint(0, 25)
-        #     column = random.randint(0, 50)
-        # mines_list.append((line, column))
-        # screen.pygame.transform(mine_image, (line, column))
+    #
+    #
+    #
+    #
+    #
+    # line = random.randint(0, 25)
+    # column = random.randint(0, 50)
+    # while line == 0 and column == 0 or line == 25 and column == 50:
+    #     line = random.randint(0, 25)
+    #     column = random.randint(0, 50)
+    # mines_list.append((line, column))
+    # screen.pygame.transform(mine_image, (line, column))
 
 
 def soldier_slot1():
@@ -138,10 +139,9 @@ def flag_location():
             game_field[row][column]["number"] = Consts.FLAG_NUM
 
 
-
-
 def touching_flag():
-    if game_field[soldier_location()[-1][0]][soldier_location()[-1][1]]["number"] == Consts.FLAG_NUM and game_field[soldier_location()[-2][0]][soldier_location()[-2][1]]["number"] == Consts.FLAG_NUM:
+    if game_field[soldier_location()[-1][0]][soldier_location()[-1][1]]["number"] == Consts.FLAG_NUM and \
+            game_field[soldier_location()[-2][0]][soldier_location()[-2][1]]["number"] == Consts.FLAG_NUM:
         return True
     return False
 # for row in mines_list:

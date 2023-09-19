@@ -16,27 +16,26 @@ import Soldier
 #     "bubble_direction": None,
 #     "mouse_angle": None
 # }
-def run_game():
-    running = True
+running = True
+
+def main():
+    global running
+    # pygame.display.flip()
+    # GameField.create()
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
 
-# state["rotated_arrow"] = state["original_arrow"]
+        GameField.create_game_field()
+        GameField.put_grass_in_grid()
+        GameField.put_mines_in_grid()
+        Screen.make_screen()
+        pygame.display.update()
 
-def main():
-    # pygame.display.flip()
-    # GameField.create()
-    run_game()
-    GameField.put_grass_in_grid()
-    GameField.put_mines_in_grid()
-    Screen.make_screen()
 
-    y_change = 0
-    x_change = 0
 
-    while state["is_window_open"]:
+    while True:
         # soldier_movement(y_change, x_change)
         handle_player_events()
         pygame.display.update()
