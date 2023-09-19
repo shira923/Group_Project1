@@ -4,24 +4,31 @@ import Consts
 import GameField
 import Soldier
 
-state = {
-    # "original_arrow": Screen.create_arrow(consts.ARROW_IMG),
-    # "rotated_arrow": None,
-    "is_bubble_fired": False,
-    "bubbles_popping": [],
-    # "turns_left_to_add_row": consts.NUM_OF_TURNS_TO_ADD_ROW,
-    "is_window_open": True,
-    # "state": consts.RUNNING_STATE,
-    "bullet_bubble": None,
-    "bubble_direction": None,
-    "mouse_angle": None
-}
+# state = {
+#     # "original_arrow": Screen.create_arrow(consts.ARROW_IMG),
+#     # "rotated_arrow": None,
+#     "is_bubble_fired": False,
+#     "bubbles_popping": [],
+#     # "turns_left_to_add_row": consts.NUM_OF_TURNS_TO_ADD_ROW,
+#     "is_window_open": True,
+#     # "state": consts.RUNNING_STATE,
+#     "bullet_bubble": None,
+#     "bubble_direction": None,
+#     "mouse_angle": None
+# }
+def run_game():
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
 
 # state["rotated_arrow"] = state["original_arrow"]
 
 def main():
     # pygame.display.flip()
     # GameField.create()
+    run_game()
     GameField.put_grass_in_grid()
     GameField.put_mines_in_grid()
     Screen.make_screen()
@@ -34,6 +41,7 @@ def main():
         handle_player_events()
         pygame.display.update()
 
+main()
 
 
 def handle_player_events():
